@@ -1,4 +1,4 @@
-package com.hazem.boruto.ui.theme
+package com.hazem.boruto.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build

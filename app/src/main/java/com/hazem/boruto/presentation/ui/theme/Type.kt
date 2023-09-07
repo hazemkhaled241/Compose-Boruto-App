@@ -1,4 +1,4 @@
-package com.hazem.boruto.ui.theme
+package com.hazem.boruto.presentation.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
