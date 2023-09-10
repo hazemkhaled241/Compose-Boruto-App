@@ -1,10 +1,10 @@
-import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
+    kotlin("kapt")
 }
 
 android {
@@ -34,18 +34,16 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
     }
-    kotlin {
-        jvmToolchain(8)
-    }
+
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"
     }
@@ -91,6 +89,7 @@ dependencies {
     annotationProcessor("androidx.room:room-compiler:$roomVersion")
     ksp("androidx.room:room-compiler:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
+    implementation ("androidx.room:room-paging:$roomVersion")
     //paging
     implementation("androidx.paging:paging-compose:3.2.1")
     //serialization
@@ -99,7 +98,8 @@ dependencies {
     implementation("androidx.datastore:datastore-preferences:1.0.0")
     //hilt
     implementation("com.google.dagger:hilt-android:2.46")
-    ksp("com.google.dagger:hilt-android-compiler:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    kapt("androidx.hilt:hilt-compiler:1.0.0")
     //coil
     implementation("io.coil-kt:coil-compose:2.4.0")
     //horizontal pager and indicator
