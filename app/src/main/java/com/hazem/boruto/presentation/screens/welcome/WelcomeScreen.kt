@@ -70,7 +70,6 @@ fun WelcomeScreen(navController: NavHostController) {
             .background(color = MaterialTheme.colors.welcomeScreenBackGroundColor)
     ) {
         HorizontalPager(
-            modifier = Modifier.weight(10f),
             state = pagerState,
         ) { pageIndex ->
             PagerScreen(onBoardingPage = pages[pageIndex])
@@ -93,7 +92,7 @@ fun PagerScreen(onBoardingPage: OnBoardingPage) {
         Image(
             modifier = Modifier
                 .fillMaxWidth(.5f)
-                .fillMaxHeight(.7f), painter = painterResource(id = onBoardingPage.image),
+                .fillMaxHeight(.6f), painter = painterResource(id = onBoardingPage.image),
             contentDescription = stringResource(R.string.on_boarding_image)
         )
         Text(
