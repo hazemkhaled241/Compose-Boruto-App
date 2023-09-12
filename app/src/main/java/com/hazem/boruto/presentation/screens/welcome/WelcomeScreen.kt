@@ -76,7 +76,9 @@ fun WelcomeScreen(navController: NavHostController) {
             PagerScreen(onBoardingPage = pages[pageIndex])
         }
         PagerIndicator(pagerState.currentPage)
-        FinishButton(pagerState.currentPage)
+        FinishButton(pagerState.currentPage) {
+
+        }
 
     }
 
@@ -144,11 +146,11 @@ fun PagerIndicator(currentPage: Int) {
     }
 }
 @Composable
-fun FinishButton(currentPage: Int) {
+fun FinishButton(currentPage: Int,onClick:()->Unit) {
 Row (modifier = Modifier.fillMaxWidth(),
     horizontalArrangement = Arrangement.Center){
     AnimatedVisibility(visible = currentPage+1==ON_BOARDING_SCREEN_COUNT,modifier = Modifier.width(FINISH_BUTTON_WIDTH)) {
-        Button(onClick = { /*TODO*/ }, modifier = Modifier.padding(vertical = LARGE_PADDING)) {
+        Button(onClick = onClick, modifier = Modifier.padding(vertical = LARGE_PADDING)) {
             Text(text = stringResource(R.string.finish), style = TextStyle(color = Color.White))
         }
     }
