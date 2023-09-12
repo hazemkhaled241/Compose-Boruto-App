@@ -1,8 +1,10 @@
-package com.hazem.boruto.domain
+package com.hazem.boruto.domain.repository
 
 import kotlinx.coroutines.flow.Flow
 
+
 interface DataStoreRepository {
+
     suspend fun saveOnBoardingState(completed:Boolean)
     fun readOnBoardingState(): Flow<Boolean>
 }
