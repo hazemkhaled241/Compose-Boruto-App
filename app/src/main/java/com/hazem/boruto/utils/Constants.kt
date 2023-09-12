@@ -6,4 +6,6 @@ object Constants {
     const val HERO_REMOTE_KEY_DATA_BASE_TABLE = "hero_remote_key_table"
     const val HERO_DATA_BASE = "hero_database"
     const val ON_BOARDING_SCREEN_COUNT = 3
+    const val PREFERENCES_NAME = "boruto_preferences"
+    const val PREFERENCES_KEY = "on_boarding_completed"
 }
