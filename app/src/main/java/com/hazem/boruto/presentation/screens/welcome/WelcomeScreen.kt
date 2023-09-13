@@ -33,9 +33,11 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.hazem.boruto.R
 import com.hazem.boruto.domain.model.OnBoardingPage
+import com.hazem.boruto.presentation.navigation.Screen
 import com.hazem.boruto.presentation.ui.theme.DarkGray
 import com.hazem.boruto.presentation.ui.theme.EXTRA_LARGE_PADDING
 import com.hazem.boruto.presentation.ui.theme.FINISH_BUTTON_WIDTH
@@ -52,7 +54,10 @@ import com.hazem.boruto.utils.Constants.ON_BOARDING_SCREEN_COUNT
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun WelcomeScreen(navController: NavHostController) {
+fun WelcomeScreen(
+    navController: NavHostController,
+    welcomeViewModel: WelcomeViewModel = hiltViewModel()
+) {
     val pages = listOf(
         OnBoardingPage.First,
         OnBoardingPage.Second,
@@ -76,7 +81,9 @@ fun WelcomeScreen(navController: NavHostController) {
         }
         PagerIndicator(pagerState.currentPage)
         FinishButton(pagerState.currentPage) {
-
+            navController.popBackStack()
+            navController.navigate(Screen.Home.route)
+            welcomeViewModel.saveOnBoardingState(true)
         }
 
     }
@@ -111,7 +118,7 @@ fun PagerScreen(onBoardingPage: OnBoardingPage) {
             text = onBoardingPage.description,
             style = TextStyle(
                 color = MaterialTheme.colors.descriptionColor,
-                fontSize = 17.sp,
+                fontSize = 16.sp,
                 fontWeight = FontWeight.Medium,
                 textAlign = TextAlign.Center
             )
@@ -144,15 +151,21 @@ fun PagerIndicator(currentPage: Int) {
         }
     }
 }
-@Composable
-fun FinishButton(currentPage: Int,onClick:()->Unit) {
-Row (modifier = Modifier.fillMaxWidth(),
-    horizontalArrangement = Arrangement.Center){
-    AnimatedVisibility(visible = currentPage+1==ON_BOARDING_SCREEN_COUNT,modifier = Modifier.width(FINISH_BUTTON_WIDTH)) {
-        Button(onClick = onClick, modifier = Modifier.padding(vertical = LARGE_PADDING)) {
-            Text(text = stringResource(R.string.finish), style = TextStyle(color = Color.White))
-        }
-    }
 
-}
+@Composable
+fun FinishButton(currentPage: Int, onClick: () -> Unit) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center
+    ) {
+        AnimatedVisibility(
+            visible = currentPage + 1 == ON_BOARDING_SCREEN_COUNT,
+            modifier = Modifier.width(FINISH_BUTTON_WIDTH)
+        ) {
+            Button(onClick = onClick, modifier = Modifier.padding(vertical = LARGE_PADDING)) {
+                Text(text = stringResource(R.string.finish), style = TextStyle(color = Color.White))
+            }
+        }
+
+    }
 }
