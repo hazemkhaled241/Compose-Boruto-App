@@ -2,6 +2,7 @@ package com.hazem.boruto.di
 
 import android.content.Context
 import com.hazem.boruto.data.repository.DataStoreOperationImp
+import com.hazem.boruto.data.repository.DataStoreRepositoryImp
 import com.hazem.boruto.domain.repository.DataStoreOperation
 import com.hazem.boruto.domain.repository.DataStoreRepository
 import com.hazem.boruto.domain.use_case.UseCases
@@ -19,7 +20,7 @@ import javax.inject.Singleton
 object RepositoryModule {
     @Provides
     @Singleton
-    fun provideDataStoreRepository(@ApplicationContext context: Context): DataStoreOperation {
+    fun provideDataStoreOperation(@ApplicationContext context: Context): DataStoreOperation {
         return DataStoreOperationImp(context = context)
     }
 
@@ -29,6 +30,14 @@ object RepositoryModule {
         return UseCases(
             SaveOnBoardingUseCase(dataStoreRepository),
             ReadOnBoardingUseCase(dataStoreRepository)
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideDataStoreRepository(dataStore: DataStoreOperation): DataStoreRepository {
+        return DataStoreRepositoryImp(
+            dataStore
         )
     }
 }
