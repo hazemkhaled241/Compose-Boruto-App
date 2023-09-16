@@ -1,6 +1,9 @@
 package com.hazem.boruto.di
 
+import com.hazem.boruto.data.local.HeroDataBase
 import com.hazem.boruto.data.remote.BorutoApi
+import com.hazem.boruto.data.repository.RemoteHeroesImp
+import com.hazem.boruto.domain.repository.RemoteHeroes
 import com.hazem.boruto.utils.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -33,5 +36,14 @@ object RemoteModule {
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build().create(BorutoApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideRemoteHeroes(heroDataBase: HeroDataBase, borutoApi: BorutoApi): RemoteHeroes {
+        return RemoteHeroesImp(
+            heroDataBase = heroDataBase,
+            borutoApi = borutoApi
+        )
     }
 }
