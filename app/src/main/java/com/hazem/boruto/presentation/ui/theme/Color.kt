@@ -16,6 +16,7 @@ val purple200 = Color(0xFFBB86FC)
 val purple500 = Color(0xFF6200EE)
 val purple700 = Color(0xFF3700B3)
 val Teal200 = Color(0XFF03DAC5)
+val StarColor=Color(0XFFFFC94D)
 
 
 val LightGray = Color(0XFFD8D8D8)
@@ -40,3 +41,5 @@ val Colors.topAppBarContentColor:Color
 val Colors.topAppBarBackgroundColor:Color
     @Composable
     get() = if (isSystemInDarkTheme()) Color.Black else purple500
+
+
