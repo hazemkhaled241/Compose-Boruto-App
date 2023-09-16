@@ -11,7 +11,7 @@ import javax.inject.Inject
 class RepositoryImp @Inject constructor(
     private val remoteHeroes: RemoteHeroes, private val dataStore: DataStoreOperation
 ) : Repository {
-    override suspend fun getAllHeroes(): Flow<PagingData<Hero>> {
+    override  fun getAllHeroes(): Flow<PagingData<Hero>> {
         return remoteHeroes.getAllHeroes()
     }
 

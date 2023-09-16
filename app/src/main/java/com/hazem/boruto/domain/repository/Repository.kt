@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 
 interface Repository {
-    suspend fun getAllHeroes():Flow<PagingData<Hero>>
+     fun getAllHeroes():Flow<PagingData<Hero>>
     suspend fun saveOnBoardingState(completed: Boolean)
     fun readOnBoardingState(): Flow<Boolean>
 }

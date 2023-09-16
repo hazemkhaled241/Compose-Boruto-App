@@ -19,7 +19,7 @@ class RemoteHeroesImp @Inject constructor(
     private val borutoApi: BorutoApi
 ) : RemoteHeroes {
 
-    override suspend fun getAllHeroes(): Flow<PagingData<Hero>> {
+    override  fun getAllHeroes(): Flow<PagingData<Hero>> {
         val pagingSourceFactory = { heroDataBase.heroDao().getAllHeroes() }
         return Pager(
             config = PagingConfig(pageSize = ITEMS_PER_PAGE),
@@ -28,7 +28,7 @@ class RemoteHeroesImp @Inject constructor(
         ).flow
     }
 
-    override suspend fun searchForHero(): Flow<PagingData<Hero>> {
+    override  fun searchForHero(): Flow<PagingData<Hero>> {
         TODO("Not yet implemented")
     }
 }

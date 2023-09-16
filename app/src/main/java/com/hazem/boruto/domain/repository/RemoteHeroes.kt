@@ -5,6 +5,6 @@ import com.hazem.boruto.domain.model.Hero
 import kotlinx.coroutines.flow.Flow
 
 interface RemoteHeroes {
-    suspend fun getAllHeroes():Flow<PagingData<Hero>>
-    suspend fun searchForHero():Flow<PagingData<Hero>>
+     fun getAllHeroes():Flow<PagingData<Hero>>
+     fun searchForHero():Flow<PagingData<Hero>>
 }
