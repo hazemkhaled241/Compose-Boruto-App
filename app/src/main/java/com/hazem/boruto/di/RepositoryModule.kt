@@ -2,9 +2,10 @@ package com.hazem.boruto.di
 
 import android.content.Context
 import com.hazem.boruto.data.repository.DataStoreOperationImp
-import com.hazem.boruto.data.repository.DataStoreRepositoryImp
+import com.hazem.boruto.data.repository.RepositoryImp
 import com.hazem.boruto.domain.repository.DataStoreOperation
-import com.hazem.boruto.domain.repository.DataStoreRepository
+import com.hazem.boruto.domain.repository.Repository
+import com.hazem.boruto.domain.repository.RemoteHeroes
 import com.hazem.boruto.domain.use_case.UseCases
 import com.hazem.boruto.domain.use_case.read_onboarding.ReadOnBoardingUseCase
 import com.hazem.boruto.domain.use_case.save_onboarding.SaveOnBoardingUseCase
@@ -26,18 +27,18 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideUseCases(dataStoreRepository: DataStoreRepository): UseCases {
+    fun provideUseCases(repository: Repository): UseCases {
         return UseCases(
-            SaveOnBoardingUseCase(dataStoreRepository),
-            ReadOnBoardingUseCase(dataStoreRepository)
+            SaveOnBoardingUseCase(repository),
+            ReadOnBoardingUseCase(repository)
         )
     }
 
     @Provides
     @Singleton
-    fun provideDataStoreRepository(dataStore: DataStoreOperation): DataStoreRepository {
-        return DataStoreRepositoryImp(
-            dataStore
+    fun provideRepository(dataStore: DataStoreOperation, remoteHeroes: RemoteHeroes): Repository {
+        return RepositoryImp(
+            remoteHeroes, dataStore
         )
     }
 }
