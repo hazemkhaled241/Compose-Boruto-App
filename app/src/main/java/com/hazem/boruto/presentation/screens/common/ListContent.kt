@@ -69,7 +69,7 @@ fun HeroItem(
     ) {
         Surface(
             modifier = Modifier.fillMaxSize(),
-            shape = RoundedCornerShape(topStart = LARGE_PADDING, topEnd = LARGE_PADDING)
+            shape = RoundedCornerShape(LARGE_PADDING)
         ) {
             Image(
                 modifier = Modifier.fillMaxSize(),
