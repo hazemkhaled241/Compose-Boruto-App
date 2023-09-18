@@ -8,23 +8,23 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.hazem.boruto.presentation.screens.common.ListContent
 import com.hazem.boruto.presentation.screens.home.components.HomeTopBar
-import com.hazem.boruto.presentation.screens.home.components.RatingWidget
-import com.hazem.boruto.presentation.ui.theme.LARGE_PADDING
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun HomeScreen( homeViewModel: HomeViewModel= hiltViewModel()){
-val allHeroes= homeViewModel.getAllHeroes.collectAsLazyPagingItems()
-Scaffold(
-    topBar = {
-        HomeTopBar(onSearchClicked = {})
+fun HomeScreen(homeViewModel: HomeViewModel = hiltViewModel(),navController: NavHostController) {
+    val allHeroes = homeViewModel.getAllHeroes.collectAsLazyPagingItems()
+    Scaffold(
+        topBar = {
+            HomeTopBar(onSearchClicked = {})
+        }
+    ) {
+        Box(modifier = Modifier.padding(it)) {
+            ListContent(heroes = allHeroes, navController =navController )
+        }
     }
-) {
-    Box(modifier = Modifier.padding(it)){
-RatingWidget(modifier = Modifier.padding(all=LARGE_PADDING), rating = 7.5)
-}
-}
 }

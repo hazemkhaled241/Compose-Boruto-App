@@ -18,7 +18,7 @@ fun SetUpNavGraph(navController: NavHostController) {
             SplashScreen(navController = navController)
         }
         composable(route=Screen.Home.route){
-            HomeScreen()
+            HomeScreen(navController = navController)
         }
         composable(route=Screen.Details.route, arguments = listOf(navArgument(DETAILS_ARGUMENT_KEY){
             type= NavType.IntType

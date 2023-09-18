@@ -44,7 +44,7 @@ import com.hazem.boruto.presentation.ui.theme.FINISH_BUTTON_WIDTH
 import com.hazem.boruto.presentation.ui.theme.LARGE_PADDING
 import com.hazem.boruto.presentation.ui.theme.LightGray
 import com.hazem.boruto.presentation.ui.theme.PAGER_INDICATOR_HEIGHT
-import com.hazem.boruto.presentation.ui.theme.SMALL_LARGE_PADDING
+import com.hazem.boruto.presentation.ui.theme.SMALL_PADDING
 import com.hazem.boruto.presentation.ui.theme.VERY_SMALL_LARGE_PADDING
 import com.hazem.boruto.presentation.ui.theme.descriptionColor
 import com.hazem.boruto.presentation.ui.theme.purple700
@@ -114,7 +114,7 @@ fun PagerScreen(onBoardingPage: OnBoardingPage) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = EXTRA_LARGE_PADDING)
-                .padding(top = SMALL_LARGE_PADDING),
+                .padding(top = SMALL_PADDING),
             text = onBoardingPage.description,
             style = TextStyle(
                 color = MaterialTheme.colors.descriptionColor,
@@ -145,7 +145,7 @@ fun PagerIndicator(currentPage: Int) {
                     .padding(VERY_SMALL_LARGE_PADDING)
                     .clip(CircleShape)
                     .background(color)
-                    .size(SMALL_LARGE_PADDING)
+                    .size(SMALL_PADDING)
 
             )
         }
