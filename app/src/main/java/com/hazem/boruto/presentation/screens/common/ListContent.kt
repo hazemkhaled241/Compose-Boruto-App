@@ -3,14 +3,17 @@ package com.hazem.boruto.presentation.screens.common
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.MaterialTheme
@@ -31,6 +34,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.itemKey
 import coil.compose.rememberAsyncImagePainter
 import com.hazem.boruto.R
 import com.hazem.boruto.domain.model.Hero
@@ -48,6 +52,22 @@ fun ListContent(
     heroes: LazyPagingItems<Hero>, navController: NavHostController
 ) {
 
+    LazyColumn(
+        contentPadding = PaddingValues(all = SMALL_PADDING),
+        verticalArrangement = Arrangement.spacedBy(
+            SMALL_PADDING
+        )
+    ) {
+        items(
+            count = heroes.itemCount,
+            key = heroes.itemKey { it.id },
+        ) { index ->
+            val hero = heroes[index]
+            hero?.let {
+                 HeroItem(hero = it, navController =navController )
+            }
+        }
+    }
 }
 
 @Composable

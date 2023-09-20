@@ -16,7 +16,7 @@ import com.hazem.boruto.presentation.screens.home.components.HomeTopBar
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun HomeScreen(homeViewModel: HomeViewModel = hiltViewModel(),navController: NavHostController) {
+fun HomeScreen(homeViewModel: HomeViewModel = hiltViewModel(), navController: NavHostController) {
     val allHeroes = homeViewModel.getAllHeroes.collectAsLazyPagingItems()
     Scaffold(
         topBar = {
@@ -24,7 +24,7 @@ fun HomeScreen(homeViewModel: HomeViewModel = hiltViewModel(),navController: Nav
         }
     ) {
         Box(modifier = Modifier.padding(it)) {
-            ListContent(heroes = allHeroes, navController =navController )
+            ListContent(heroes = allHeroes, navController = navController)
         }
     }
 }
