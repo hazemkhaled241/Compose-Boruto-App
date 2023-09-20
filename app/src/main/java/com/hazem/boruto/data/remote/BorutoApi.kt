@@ -5,12 +5,12 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface BorutoApi {
-    @GET("boruto/heroes")
+    @GET("/boruto/heroes")
     suspend fun getAllHeroes(
         @Query("page") page: Int = 1
     ): ApiResponse
 
-    @GET("boruto/heroes/search")
+    @GET("/boruto/heroes/search")
     suspend fun searchForHeroes(
         @Query("name") name:String
     ): ApiResponse

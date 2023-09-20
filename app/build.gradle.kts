@@ -91,6 +91,7 @@ dependencies {
     implementation("androidx.room:room-ktx:$roomVersion")
     implementation ("androidx.room:room-paging:$roomVersion")
     //paging
+    implementation ("androidx.paging:paging-runtime-ktx:3.2.1")
     implementation("androidx.paging:paging-compose:3.2.1")
     //serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
