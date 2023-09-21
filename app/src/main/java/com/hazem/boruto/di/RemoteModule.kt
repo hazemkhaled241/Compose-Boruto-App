@@ -22,8 +22,8 @@ object RemoteModule {
     @Singleton
     fun provideHttpClient(): OkHttpClient {
         return OkHttpClient.Builder().readTimeout(
-            15, TimeUnit.MINUTES)
-            .connectTimeout(15,TimeUnit.MINUTES)
+            15, TimeUnit.SECONDS)
+            .connectTimeout(15,TimeUnit.SECONDS)
             .build()
     }
 
