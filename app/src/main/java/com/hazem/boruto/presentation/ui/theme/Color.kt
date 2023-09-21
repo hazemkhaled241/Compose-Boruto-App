@@ -16,7 +16,10 @@ val purple200 = Color(0xFFBB86FC)
 val purple500 = Color(0xFF6200EE)
 val purple700 = Color(0xFF3700B3)
 val Teal200 = Color(0XFF03DAC5)
-val StarColor=Color(0XFFFFC94D)
+val StarColor = Color(0XFFFFC94D)
+val ShimmerLightGray = Color(0XFFF1F1F1)
+val ShimmerMediumGray = Color(0XFFE3E3E3)
+val ShimmerDarkGray = Color(0XFF1D1D1D)
 
 
 val LightGray = Color(0XFFD8D8D8)
@@ -24,7 +27,7 @@ val DarkGray = Color(0XFF2A2A2A)
 
 val Colors.welcomeScreenBackGroundColor
     @Composable
-    get() = if (isSystemInDarkTheme()) Color.Black  else Color.White
+    get() = if (isSystemInDarkTheme()) Color.Black else Color.White
 
 val Colors.titleColor
     @Composable
@@ -34,11 +37,11 @@ val Colors.descriptionColor
     @Composable
     get() = if (isSystemInDarkTheme()) LightGray.copy(alpha = .5f) else DarkGray.copy(alpha = .5f)
 
-val Colors.topAppBarContentColor:Color
+val Colors.topAppBarContentColor: Color
     @Composable
     get() = if (isSystemInDarkTheme()) LightGray else Color.White
 
-val Colors.topAppBarBackgroundColor:Color
+val Colors.topAppBarBackgroundColor: Color
     @Composable
     get() = if (isSystemInDarkTheme()) Color.Black else purple500
 
