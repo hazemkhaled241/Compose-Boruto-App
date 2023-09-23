@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.hazem.boruto.presentation.screens.home.HomeScreen
+import com.hazem.boruto.presentation.screens.search.SearchScreen
 import com.hazem.boruto.presentation.screens.splash.SplashScreen
 import com.hazem.boruto.presentation.screens.welcome.WelcomeScreen
 import com.hazem.boruto.utils.Constants.DETAILS_ARGUMENT_KEY
@@ -28,6 +29,8 @@ fun SetUpNavGraph(navController: NavHostController) {
         composable(route=Screen.Welcome.route){
             WelcomeScreen(navController = navController)
         }
-        composable(route=Screen.Search.route){}
+        composable(route=Screen.Search.route){
+            SearchScreen()
+        }
     }
 }
