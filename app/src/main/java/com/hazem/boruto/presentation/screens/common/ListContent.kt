@@ -91,6 +91,7 @@ fun handlePagingReturn(
                 false
             }
             error!=null->{
+                EmptyScreen(error = error)
                 false
             }
 
