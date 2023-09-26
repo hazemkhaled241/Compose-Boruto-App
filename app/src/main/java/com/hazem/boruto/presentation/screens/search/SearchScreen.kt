@@ -39,6 +39,6 @@ fun SearchScreen(
         if(!isFirstTime)
          ListContent(heroes = heroes, navController = navController)
         else
-            EmptyScreen()
+            EmptyScreen(heroes=heroes)
     })
 }
