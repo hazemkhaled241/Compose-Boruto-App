@@ -11,8 +11,12 @@ import javax.inject.Inject
 class RepositoryImp @Inject constructor(
     private val remoteHeroes: RemoteHeroes, private val dataStore: DataStoreOperation
 ) : Repository {
-    override  fun getAllHeroes(): Flow<PagingData<Hero>> {
+    override fun getAllHeroes(): Flow<PagingData<Hero>> {
         return remoteHeroes.getAllHeroes()
+    }
+
+    override fun searchForHeroes(query: String): Flow<PagingData<Hero>> {
+        return remoteHeroes.searchForHero(query = query)
     }
 
     override suspend fun saveOnBoardingState(completed: Boolean) {

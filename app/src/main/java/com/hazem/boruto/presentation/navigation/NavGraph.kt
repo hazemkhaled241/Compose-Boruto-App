@@ -30,7 +30,7 @@ fun SetUpNavGraph(navController: NavHostController) {
             WelcomeScreen(navController = navController)
         }
         composable(route=Screen.Search.route){
-            SearchScreen()
+            SearchScreen(navController=navController)
         }
     }
 }

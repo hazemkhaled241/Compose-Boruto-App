@@ -10,6 +10,7 @@ import com.hazem.boruto.domain.use_case.UseCases
 import com.hazem.boruto.domain.use_case.get_all_heroes.GetAllHeroesUseCase
 import com.hazem.boruto.domain.use_case.read_onboarding.ReadOnBoardingUseCase
 import com.hazem.boruto.domain.use_case.save_onboarding.SaveOnBoardingUseCase
+import com.hazem.boruto.domain.use_case.search_for_hero.SearchForHeroUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,7 +33,8 @@ object RepositoryModule {
         return UseCases(
             SaveOnBoardingUseCase(repository),
             ReadOnBoardingUseCase(repository),
-            GetAllHeroesUseCase(repository)
+            GetAllHeroesUseCase(repository),
+            SearchForHeroUseCase(repository)
         )
     }
 
