@@ -1,9 +1,13 @@
 package com.hazem.boruto.presentation.screens.details
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -12,8 +16,11 @@ import androidx.compose.material.BottomSheetValue
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.material.rememberBottomSheetState
 import androidx.compose.runtime.Composable
@@ -21,12 +28,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
+import coil.compose.rememberAsyncImagePainter
 import com.hazem.boruto.R
 import com.hazem.boruto.domain.model.Hero
 import com.hazem.boruto.presentation.screens.details.components.InfoBox
@@ -35,8 +44,10 @@ import com.hazem.boruto.presentation.ui.theme.ICON_INFO_SIZE
 import com.hazem.boruto.presentation.ui.theme.LARGE_PADDING
 import com.hazem.boruto.presentation.ui.theme.MEDIUM_PADDING
 import com.hazem.boruto.presentation.ui.theme.MIN_SHEET_HEIGHT
+import com.hazem.boruto.presentation.ui.theme.SMALL_PADDING
 import com.hazem.boruto.presentation.ui.theme.titleColor
 import com.hazem.boruto.utils.Constants.ABOUT_TEXT_MAX_LINES
+import com.hazem.boruto.utils.Constants.BASE_URL
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -53,8 +64,61 @@ fun DetailsContent(
         sheetContent = {
             selectedHero?.let { BottomSheetContent(selectedHero = it) }
         },
-        content = {}
+        content = {
+            selectedHero?.let { hero ->
+                BackgroundContent(
+                    heroImage = hero.image,
+                    onClosedClicked = {
+                        navController.popBackStack()
+                    })
+            }
+
+        }
     )
+}
+
+@Composable
+fun BackgroundContent(
+    heroImage: String,
+    imageFraction: Float = 1f,
+    backgroundColor: Color = MaterialTheme.colors.surface,
+    onClosedClicked: () -> Unit
+) {
+    val imagePainter = rememberAsyncImagePainter(
+        model = "$BASE_URL${heroImage}", placeholder = painterResource(
+            R.drawable.placeholder
+        ), error = painterResource(R.drawable.placeholder)
+    )
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(backgroundColor)
+    ) {
+        Image(
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight(fraction = imageFraction)
+                .align(Alignment.TopStart),
+            painter = imagePainter,
+            contentDescription = stringResource(id = R.string.hero_image),
+            contentScale = ContentScale.Crop
+        )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.End
+        ) {
+            IconButton(
+                modifier = Modifier.padding(all = SMALL_PADDING), onClick = onClosedClicked
+            ) {
+                Icon(
+                    modifier = Modifier.size(ICON_INFO_SIZE),
+                    imageVector = Icons.Default.Close,
+                    contentDescription = stringResource(id = R.string.close_icon),
+                    tint = Color.White
+                )
+            }
+        }
+    }
 }
 
 @Composable
