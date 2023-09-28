@@ -1,6 +1,7 @@
 package com.hazem.boruto.presentation.screens.details
 
 import android.util.Log
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -12,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.BottomSheetScaffold
 import androidx.compose.material.BottomSheetScaffoldState
 import androidx.compose.material.BottomSheetValue
@@ -26,6 +28,7 @@ import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.material.rememberBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -42,6 +45,8 @@ import com.hazem.boruto.R
 import com.hazem.boruto.domain.model.Hero
 import com.hazem.boruto.presentation.screens.details.components.InfoBox
 import com.hazem.boruto.presentation.screens.details.components.OrderedList
+import com.hazem.boruto.presentation.ui.theme.EXPANDED_RADIUS_LEVEL
+import com.hazem.boruto.presentation.ui.theme.EXTRA_LARGE_PADDING
 import com.hazem.boruto.presentation.ui.theme.ICON_INFO_SIZE
 import com.hazem.boruto.presentation.ui.theme.LARGE_PADDING
 import com.hazem.boruto.presentation.ui.theme.MEDIUM_PADDING
@@ -61,7 +66,15 @@ fun DetailsContent(
         bottomSheetState = rememberBottomSheetState(initialValue = BottomSheetValue.Expanded)
     )
     val currentSheetFraction = scaffoldState.currentSheetFraction
+    val radiusAnim by animateDpAsState(
+        targetValue = if (currentSheetFraction == 1f) EXTRA_LARGE_PADDING
+        else EXPANDED_RADIUS_LEVEL, label = ""
+    )
     BottomSheetScaffold(
+        sheetShape = RoundedCornerShape(
+            topEnd = radiusAnim,
+            topStart = radiusAnim
+        ),
         scaffoldState = scaffoldState,
         sheetPeekHeight = MIN_SHEET_HEIGHT,
         sheetContent = {
@@ -101,7 +114,7 @@ fun BackgroundContent(
         Image(
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight(fraction = imageFraction+0.6f)
+                .fillMaxHeight(fraction = imageFraction + 0.6f)
                 .align(Alignment.TopStart),
             painter = imagePainter,
             contentDescription = stringResource(id = R.string.hero_image),
