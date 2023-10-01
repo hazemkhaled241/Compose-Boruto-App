@@ -1,12 +1,16 @@
 package com.hazem.boruto.presentation.screens.home
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalView
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -30,4 +34,8 @@ fun HomeScreen(homeViewModel: HomeViewModel = hiltViewModel(), navController: Na
             ListContent(heroes = allHeroes, navController = navController)
         }
     }
+
+    val view = LocalView.current
+    val window = (view.context as Activity).window
+    window.statusBarColor = colorScheme.primary.toArgb()
 }
